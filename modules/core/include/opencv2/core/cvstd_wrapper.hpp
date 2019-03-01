@@ -27,14 +27,16 @@ Ptr<_Tp> makePtr(const A1&... a1) { return std::make_shared<_Tp>(a1...); }
 
 #else  // cv::Ptr with compatibility workarounds
 
-// It should be defined for C-API types only.
-// C++ types should use regular "delete" operator.
-template<typename Y> struct DefaultDeleter;
-#if 0
+template<typename Y>
+struct DefaultDeleter
 {
-    void operator()(Y* p) const;
-};
+#ifndef _MSC_VER
+    void operator()(Y* p) const = delete;  // not available by default; enabled for specializations only
+#else
+    void operator()(Y* p) const { delete p; }
 #endif
+};
+
 
 namespace sfinae {
 template<typename C, typename Ret, typename... Args>
