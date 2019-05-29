@@ -115,9 +115,9 @@ if(WITH_ARAVIS)
   if(HAVE_ARAVIS_GLIB)
     find_path(ARAVIS_INCLUDE_PATH "arv.h"
               PATHS /usr/local /var /opt /usr ENV ProgramFiles ENV ProgramW6432
-              PATH_SUFFIXES include "aravis-0.6" "aravis-0.4"
+              PATH_SUFFIXES include "aravis-0.6" "aravis-0.4" "aravis-0.8"
               DOC "The path to Aravis SDK headers")
-    find_library(ARAVIS_LIBRARIES NAMES "aravis-0.6" "aravis-0.4" )
+    find_library(ARAVIS_LIBRARIES NAMES "aravis-0.6" "aravis-0.4" "aravis-0.8")
     if(ARAVIS_LIBRARIES AND ARAVIS_INCLUDE_PATH)
       ocv_append_build_options(VIDEOIO ARAVIS_GLIB)
       set(HAVE_ARAVIS_API TRUE)
