@@ -290,7 +290,7 @@ bool CvCaptureCAM_Aravis::grabFrame()
         int max_tries = 10;
         int tries = 0;
         for(; tries < max_tries; tries ++) {
-            arv_buffer = arv_stream_timeout_pop_buffer (stream, 200000);
+            arv_buffer = arv_stream_timeout_pop_buffer (stream, 1000000);
             if (arv_buffer != NULL && arv_buffer_get_status (arv_buffer) != ARV_BUFFER_STATUS_SUCCESS) {
                 arv_stream_push_buffer (stream, arv_buffer);
             } else break;
